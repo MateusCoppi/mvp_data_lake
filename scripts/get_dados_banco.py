@@ -1,22 +1,27 @@
 import pandas as pd
 import psycopg2
 
-conn = psycopg2.connect(
-    dbname="mydatabase",
-    user="admin",
-    password="admin",
-    host="localhost",  # se rodar fora do docker
-    port="5432"
-)
 
-# Query SQL
-query = 'SELECT * FROM public."Pagina1";'  # use aspas duplas se o nome tiver maiúsculas
+def get_data(colunas: list = "*", schema: str = "public", tabelas: str = 'Pagina1'):
 
-# Carregar no DataFrame
-df = pd.read_sql(query, conn)
+    if colunas is None:
+        colunas = "*"
+    
+    conn = psycopg2.connect(
+        dbname="mydatabase",
+        user="admin",
+        password="admin",
+        host="localhost", 
+        port="5432"
+    )
 
-# Exibir resultado
-print(df.info())
+    # Query SQL
+    query = f'SELECT {colunas} FROM {schema}."{tabelas}";'
 
-# Encerrar conexão
-conn.close()
+    # Carregar no DataFrame
+    df = pd.read_sql(query, conn)
+
+    # Encerrar conexão
+    conn.close()
+
+    return df

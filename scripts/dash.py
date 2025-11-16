@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from get_dados_banco import get_data
 
 # -------------------------------
 # Função principal do dashboard
@@ -95,21 +96,7 @@ def main(df: pd.DataFrame):
 # Exemplo de uso local
 # -------------------------------
 if __name__ == "__main__":
-    # Exemplo: carregue um DataFrame de teste
-    df_exemplo = pd.DataFrame({
-        "id": ["1", "2", "3"],
-        "conta": ["Nubank", "Itaú", "Nubank"],
-        "categoria": ["Alimentação", "Salário", "Transporte"],
-        "descricao": ["Supermercado", "Pagamento", "Uber"],
-        "valor__R__": ["R$ 150,00", "R$ 5.000,00", "R$ 25,00"],
-        "observacoes": ["", "", ""],
-        "data_transacao": ["2025-10-01", "2025-10-05", "2025-10-10"],
-        "tipo_transacao": ["Saída", "Entrada", "Saída"],
-        "metodo_pagamento": ["Crédito", "PIX", "Débito"],
-        "_airbyte_raw_id": ["abc", "def", "ghi"],
-        "_airbyte_extracted_at": pd.to_datetime(["2025-10-10", "2025-10-10", "2025-10-10"]),
-        "_airbyte_generation_id": [1, 1, 1],
-        "_airbyte_meta": ["{}", "{}", "{}"],
-    })
 
-    main(df_exemplo)
+    df = get_data()
+
+    main(df)
