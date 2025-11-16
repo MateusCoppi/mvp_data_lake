@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from get_dados_banco import get_data
+from DataBaseConnection import DataBaseConnection
 
 # -------------------------------
 # Função principal do dashboard
@@ -97,6 +97,8 @@ def main(df: pd.DataFrame):
 # -------------------------------
 if __name__ == "__main__":
 
-    df = get_data()
+    db = DataBaseConnection()
 
+    df = db.get_data()
+    
     main(df)
