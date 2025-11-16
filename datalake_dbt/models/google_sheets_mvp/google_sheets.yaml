@@ -1,0 +1,29 @@
+models:
+  - name: sample
+    description: "A sample transformation using dbt"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: Conta
+        description: "Transaction description"
+        data_tests:
+          - not_null
+
+      - name: "Valor R$"
+        description: "Transaction value"
+        data_tests:
+          - not_null
+
+      - name: "Data de Transação"
+        description: "Transaction date"
+        data_tests:
+          - not_null
+
+      - name: "Método de Pagamento"
+        description: "Transaction payment method"
+        data_tests:
+          - not_null
